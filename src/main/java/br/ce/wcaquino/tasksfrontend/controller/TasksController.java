@@ -49,7 +49,7 @@ public class TasksController {
 		try {
 			RestTemplate restTemplate = new RestTemplate();
 			restTemplate.postForObject(
-					getBackendURL() + "/todo", todo, Object.class);
+					getBackendURL() + "/tasks-backend/todo", todo, Object.class);
 			model.addAttribute("sucess", "Sucess!");
 			return "index";
 		} catch(Exception e) {
@@ -67,7 +67,7 @@ public class TasksController {
 	@GetMapping("delete/{id}")
 	public String delete(@PathVariable Long id, Model model) {
 		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.delete(getBackendURL() + "/todo/" + id);
+		restTemplate.delete(getBackendURL() + "/tasks-backend/todo/" + id);
 		model.addAttribute("success", "Success!");
 		model.addAttribute("todos", getTodos());
 		return "index";
@@ -78,6 +78,6 @@ public class TasksController {
 	private List<Todo> getTodos() {
 		RestTemplate restTemplate = new RestTemplate();
 		return restTemplate.getForObject(
-				getBackendURL() + "/todo", List.class);
+				getBackendURL() + "/tasks-backend/todo", List.class);
 	}
 }
